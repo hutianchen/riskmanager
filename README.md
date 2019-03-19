@@ -1,15 +1,10 @@
-# drools-spring-boot
 
-规则引擎Drools与SpringBoot的使用
+规则引擎maven依赖
 
-## SpringBoot与Drools
-
-#### SpringBoot项目
-    略
-#### Drools
+#### Drools最新版本7.18.0
 - 依赖
 ```
-        <drools.version>6.5.0.Final</drools.version>
+        <drools.version>7.18.0.Final</drools.version>
         <!--Drools-->
         <dependency>
             <groupId>org.kie</groupId>
