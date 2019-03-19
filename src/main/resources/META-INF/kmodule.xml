@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kmodule xmlns="http://www.drools.org/xsd/kmodule">
+    <kbase name="kbase1" packages="com.htc.drools.rule.group.handshake">
+        <ksession name="ksession1" type="stateful"/>
+    </kbase>
+
+    <kbase name="kbase2" packages="com.htc.drools.rule.group.handshake">
+        <ksession name="ksession2" type="stateless"/>
+    </kbase>
+</kmodule>

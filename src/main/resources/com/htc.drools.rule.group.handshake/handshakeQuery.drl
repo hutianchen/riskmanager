@@ -1,0 +1,7 @@
+package com.drools
+import com.drools.bean.DroolsHandshakeBean;
+
+query "isriskevent == 1"
+ droolsHandshakeBean:DroolsHandshakeBean(isRiskEvent == 1)
+ end
+

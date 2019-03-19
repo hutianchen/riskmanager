@@ -1,0 +1,65 @@
+package com.drools
+
+//自定义函数
+function  boolean testFunction(){
+  return true;
+}
+import com.drools.bean.DroolsBrushDurationBean;
+import com.drools.bean.DroolsHandshakeBean;
+
+//全局变量
+global java.util.List list;
+
+//规则名称，一个文件可以有多个
+     rule "htc.drools.rule.htc.drools.rule.group.handshake"
+        salience 3 //优先级
+        no-loop true //防止死循环
+        lock-on-active true  //避免规则被重复执行
+//        activation-group "handshake" //规则组，同一组内只有一个规则并且只有一个bean会被执行
+//        agenda-group "focus1" //焦点必须显示指定才会执行该规则,不能和activation-group一起使用，否则activation-group失效
+//           auto-focus true //需要通过java类实现AgendaFilter接口，然后通过match方法匹配规则名，如果返回true则执行该规则
+         when
+//            eval(testFunction())
+//            forall(DroolsHandshakeBean());//所有事实对象都满足条件
+           $p : DroolsHandshakeBean(name matches "12.*",handshakeNum > 80,names contains "123",name memberOf list)
+    //       $d : DroolsBrushDurationBean(droolsHandshakeBean == $p,durationVal>10)
+            then
+            $p.setIsRiskEvent(1);
+            update($p)
+            System.out.println("规则1风险事件生成成功，userid="+$p.getUserId());
+//            drools.halt(); //执行完该规则后其他规则不再执行
+            end
+
+
+        rule "htc.drools.rule.group.handshake2"
+        salience 2
+            no-loop true
+            lock-on-active true
+//            activation-group "handshake"
+             when
+               $p : DroolsHandshakeBean(isRiskEvent == null,handshakeNum > 60)
+//               DroolsBrushDurationBean(droolsHandshakeBean == $p,durationVal>10);
+                then
+                $p.setIsRiskEvent(1);
+                update($p)
+                System.out.println("规则2风险事件生成成功，userid="+$p.getUserId());
+//                drools.halt(); //执行完该规则后其他规则不再执行
+                end
+
+
+        rule "htc.drools.rule.group.handshake3"
+            salience 1
+            no-loop true
+            lock-on-active true
+//            activation-group "handshake"
+             when
+               $p : DroolsHandshakeBean(isRiskEvent == null,handshakeNum > 30)
+        //       DroolsBrushDurationBean(getDuration()>10)
+                then
+                $p.setIsRiskEvent(1);
+                update($p)
+                System.out.println("规则3风险事件生成成功，userid="+$p.getUserId());
+//                drools.halt(); //执行完该规则后其他规则不再执行
+                end
+
+
