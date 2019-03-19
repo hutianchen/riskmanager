@@ -34,16 +34,4 @@
 ```
 
 
-## Drools
-
-   - 规则
-   [Drools-Language](https://github.com/MyHerux/drools-springboot/blob/master/Drools-Language.md)
-
-   - Rule示例
-   [Drools-Example](https://github.com/MyHerux/drools-springboot/blob/master/Drools-Example.md)
    
-   - Drools动态规则与决策表
-   [Drools-Use](https://github.com/MyHerux/drools-springboot/blob/master/Drools-Use.md)
-
-   - Drools解决复杂逻辑问题
-   [Drools-ComplexProblem](https://github.com/MyHerux/drools-springboot/blob/master/Drools-ComplexProblem.md)
