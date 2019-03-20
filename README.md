@@ -14,8 +14,10 @@
     当一个 java bean 插入到 working Memory(内存储存)中，规则使用的是原有对象的 引用，规则通过对 
     fact 对象的读写，实现对应用数据的读写，对于其中的属性，需要提供 getter setter 访问器，规则中，
     可以动态的往当前 working Memory 中插入删除新的 fact 对象。
- 
-#### [api用法]   https://github.com/hfq-hutianchen/riskmanager/blob/master/Drools7-api.md
+
 #### [maven依赖] https://github.com/hfq-hutianchen/riskmanager/blob/master/Drools7-依赖.md
 #### [基础语法]   https://github.com/hfq-hutianchen/riskmanager/blob/master/Drools7-基础语法.md
+#### [api用法]   https://github.com/hfq-hutianchen/riskmanager/blob/master/Drools7-api.md
+
+
 
