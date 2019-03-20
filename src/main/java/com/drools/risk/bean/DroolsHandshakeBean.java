@@ -1,4 +1,4 @@
-package com.drools.bean;
+package com.drools.risk.bean;
 
 
 import lombok.AllArgsConstructor;
@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * drools规则引擎中的fact对象，可以在workingmemory中被引用，并且通过drls中的宏对象操作
@@ -16,7 +17,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class DroolsBrushDurationBean implements Serializable {
+public class DroolsHandshakeBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -34,22 +35,25 @@ public class DroolsBrushDurationBean implements Serializable {
      */
     private Integer userId;
     /**
-     * 时长
+     * 握手单数量
      */
-    private Integer durationVal;
+    private Integer handshakeNum;
+
+    private List<String> names;
+
+    private String name;
+
 
     /**
      * 是否是风险事件
      */
     private Integer isRiskEvent;
 
-    /**
-     * 握手单bean
-     */
-    DroolsHandshakeBean droolsHandshakeBean;
 
+    public static boolean testDroolsFunction(String param){
 
-    public static void testDrools(){
+        System.out.println("条件达成 "+param);
+        return true;
 
     }
 }

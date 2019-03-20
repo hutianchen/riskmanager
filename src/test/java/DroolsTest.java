@@ -1,5 +1,6 @@
-import com.drools.bean.DroolsBrushDurationBean;
-import com.drools.bean.DroolsHandshakeBean;
+import com.drools.risk.bean.DroolsBrushDurationBean;
+import com.drools.risk.bean.DroolsHandshakeBean;
+import com.drools.risk.engine.DroolsEngine;
 import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
@@ -7,11 +8,41 @@ import org.kie.api.runtime.rule.QueryResults;
 import org.kie.api.runtime.rule.QueryResultsRow;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class droolsTest {
+public class DroolsTest {
 
+
+    /**
+     * 测试动态规则引擎
+     * @param args
+     */
     public static void main(String[] args) {
+        List<String> names =  new ArrayList<>();
+        names.add("123");
+        //构建事实数据
+        DroolsHandshakeBean handshakeBean = DroolsHandshakeBean.builder().handshakeNum(100).driverId(1).orderId(1).userId(1).names(names).name("123").build();
+        DroolsBrushDurationBean droolsDuationBean = DroolsBrushDurationBean.builder().durationVal(100).userId(3).droolsHandshakeBean(handshakeBean).build();
+        List<Object> facts = new ArrayList<>();
+        facts.add(handshakeBean);
+        facts.add(droolsDuationBean);
+        //构建全局变量数据
+        List<Map<String,Object>> globals = new ArrayList<>();
+        Map<String,Object> map =  new HashMap<>();
+        map.put("data",names);
+        map.put("key","list");
+        globals.add(map);
+        //执行引擎
+        DroolsEngine.handle(facts,globals);
+    }
+
+    /**
+     * 测试静态规则引擎
+     * @param args
+     */
+    public static void main1(String[] args) {
 
         KieServices kss  = KieServices.Factory.get();
         //默认的hbase容器
@@ -21,12 +52,9 @@ public class droolsTest {
         KieSession ks = kc.newKieSession("ksession1");
         List<String> names =  new ArrayList<>();
         names.add("123");
-        names.add("456");
         DroolsHandshakeBean handshakeBean = DroolsHandshakeBean.builder().handshakeNum(100).driverId(1).orderId(1).userId(1).names(names).name("123").build();
-        DroolsHandshakeBean handshakeBean2 = DroolsHandshakeBean.builder().handshakeNum(90).driverId(1).orderId(1).userId(1).names(names).name("123").build();
         DroolsBrushDurationBean droolsDuationBean = DroolsBrushDurationBean.builder().durationVal(100).userId(3).droolsHandshakeBean(handshakeBean).build();
         ks.insert(handshakeBean);
-        ks.insert(handshakeBean2);
         ks.insert(droolsDuationBean);
         ks.setGlobal("list",names);
 //        ks.getAgenda().getAgendaGroup("focus1").setFocus();

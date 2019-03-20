@@ -4,8 +4,8 @@ package com.drools
 function  boolean testFunction(){
   return true;
 }
-import com.drools.bean.DroolsBrushDurationBean;
-import com.drools.bean.DroolsHandshakeBean;
+import com.drools.risk.bean.DroolsBrushDurationBean;
+import com.drools.risk.bean.DroolsHandshakeBean;
 
 //全局变量
 global java.util.List list;
@@ -19,14 +19,15 @@ global java.util.List list;
 //        agenda-group "focus1" //焦点必须显示指定才会执行该规则,不能和activation-group一起使用，否则activation-group失效
 //           auto-focus true //需要通过java类实现AgendaFilter接口，然后通过match方法匹配规则名，如果返回true则执行该规则
          when
+
 //            eval(testFunction())
 //            forall(DroolsHandshakeBean());//所有事实对象都满足条件
            $p : DroolsHandshakeBean(name matches "12.*",handshakeNum > 80,names contains "123",name memberOf list)
     //       $d : DroolsBrushDurationBean(droolsHandshakeBean == $p,durationVal>10)
             then
-            $p.setIsRiskEvent(1);
-            update($p)
-            System.out.println("规则1风险事件生成成功，userid="+$p.getUserId());
+                 $p.setIsRiskEvent(1);
+                 update($p)
+                 System.out.println("规则1风险事件生成成功，userid="+$p.getUserId());
 //            drools.halt(); //执行完该规则后其他规则不再执行
             end
 
