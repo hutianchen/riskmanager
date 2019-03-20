@@ -1,5 +1,5 @@
 package com.drools
-import com.drools.bean.DroolsHandshakeBean;
+import com.drools.risk.bean.DroolsHandshakeBean;
 
 query "isriskevent == 1"
  droolsHandshakeBean:DroolsHandshakeBean(isRiskEvent == 1)
