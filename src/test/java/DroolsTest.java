@@ -1,25 +1,41 @@
+import com.DroolsApplication;
 import com.drools.risk.bean.DroolsBrushDurationBean;
 import com.drools.risk.bean.DroolsHandshakeBean;
 import com.drools.risk.engine.DroolsEngine;
+import com.drools.risk.engine.DynamicDroolsAdapter;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.kie.api.KieBase;
 import org.kie.api.KieServices;
+import org.kie.api.io.ResourceType;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 import org.kie.api.runtime.rule.QueryResults;
 import org.kie.api.runtime.rule.QueryResultsRow;
+import org.kie.internal.utils.KieHelper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.ApplicationContext;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@SpringBootTest(classes = DroolsApplication.class)
+@RunWith(SpringRunner.class)
 public class DroolsTest {
 
+    @Autowired
+    KieBase kieBase;
+    @Autowired
+    DroolsEngine droolsEngine;
+    @Autowired
+    ApplicationContext applicationContext;
 
-    /**
-     * 测试动态规则引擎
-     * @param args
-     */
-    public static void main(String[] args) {
+    @Test
+    public void droolsAction(){
         List<String> names =  new ArrayList<>();
         names.add("123");
         //构建事实数据
@@ -35,7 +51,18 @@ public class DroolsTest {
         map.put("key","list");
         globals.add(map);
         //执行引擎
-        DroolsEngine.handle(facts,globals);
+        droolsEngine.handle(facts,globals);
+
+    }
+
+
+
+    /**
+     * 测试动态规则引擎
+     * @param args
+     */
+    public static void main(String[] args) {
+
     }
 
     /**

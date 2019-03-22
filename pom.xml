@@ -23,8 +23,9 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <mysql-connector>5.1.46</mysql-connector>
-        <drools.version>6.4.0.Final</drools.version>
-        <spring.version>4.2.6.RELEASE</spring.version>
+        <drools.version>7.18.0.Final</drools.version>
+        <spring.version>5.1.5.RELEASE</spring.version>
+        <spring.boot.version>2.0.4.RELEASE</spring.boot.version>
         <log4j2.version>2.5</log4j2.version>
     </properties>
 
@@ -34,11 +35,22 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>${spring.boot.version}</version>
+        </dependency>
         <!--springboot的测试包，可以使用springboottest注解和Test注解进行单元测试-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+            <version>${spring.boot.version}</version>
         </dependency>
 
         <!-- MySQL 连接驱动依赖 -->
@@ -55,9 +67,32 @@
         </dependency>
         <dependency>
             <groupId>org.kie</groupId>
-            <artifactId>kie-api</artifactId>
+            <artifactId>kie-spring</artifactId>
             <version>${drools.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-tx</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-beans</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-context</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.kie</groupId>-->
+            <!--<artifactId>kie-api</artifactId>-->
+            <!--<version>${drools.version}</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.drools</groupId>
             <artifactId>drools-core</artifactId>
