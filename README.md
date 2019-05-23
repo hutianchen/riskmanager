@@ -14,10 +14,18 @@
     当一个 java bean 插入到 working Memory(内存储存)中，规则使用的是原有对象的 引用，规则通过对 
     fact 对象的读写，实现对应用数据的读写，对于其中的属性，需要提供 getter setter 访问器，规则中，
     可以动态的往当前 working Memory 中插入删除新的 fact 对象。
+### Drools的优势
+      1.规则配置逻辑与业务逻辑解耦，简化规则与业务逻辑的匹配过程的开发
+      2.相同模式的节点共享，避免重复计算
+      3.过程状态被保存，可在短时间内实现反复计算
+      4.支持事件流、滑动窗口，解决复杂事件处理过程
+### Drools的问题
+      1.内存占用随着事实对象的增大成指数增长
+               
 
 #### [maven依赖] https://github.com/hfq-hutianchen/riskmanager/blob/master/Drools7-依赖.md
 #### [基础语法]   https://github.com/hfq-hutianchen/riskmanager/blob/master/Drools7-基础语法.md
 #### [api用法]   https://github.com/hfq-hutianchen/riskmanager/blob/master/Drools7-api.md
 
-
+#### 参考资料：http://ksoong.org/drools-examples/content/
 

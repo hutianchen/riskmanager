@@ -1,8 +1,11 @@
 package com.drools.risk.engine;
 
 import org.kie.api.KieBase;
+import org.kie.api.io.ResourceType;
 import org.kie.api.runtime.KieSession;
+import org.kie.internal.utils.KieHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -16,6 +19,17 @@ public class DroolsEngine {
 
     @Autowired
     KieBase kieBase;
+
+
+    @Cacheable(value = "kieBase",key = "#queryKieBase2")
+    public KieBase getKieBase(String queryKieBase2){
+        KieHelper helper = new KieHelper();
+        //动态添加风险规则，规则可以添加多个
+        helper.addContent(DynamicDroolsAdapter.rule2Drl(null), ResourceType.DRL);
+        KieBase kieBase = helper.build();
+        return kieBase;
+
+    }
 
     /**
      * 风险处理
