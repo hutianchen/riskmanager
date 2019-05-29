@@ -21,8 +21,8 @@ public class DroolsEngine {
     KieBase kieBase;
 
 
-    @Cacheable(value = "kieBase",key = "#queryKieBase2")
-    public KieBase getKieBase(String queryKieBase2){
+    @Cacheable(value = "kieBase",key = "#queryKieBase")
+    public KieBase getKieBase(String queryKieBase){
         KieHelper helper = new KieHelper();
         //动态添加风险规则，规则可以添加多个
         helper.addContent(DynamicDroolsAdapter.rule2Drl(null), ResourceType.DRL);

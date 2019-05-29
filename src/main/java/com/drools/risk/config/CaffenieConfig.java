@@ -33,7 +33,7 @@ public class CaffenieConfig {
      * 每个cache缺省：10秒超时、最多缓存50000条数据，需要修改可以在构造方法的参数中指定。
      */
     public enum Caches{
-        kieBase(10,2), //有效期5秒
+        kieBase(5,2), //有效期5秒
         getSomething, //缺省10秒
         getOtherthing(300, 1000), //5分钟，最大容量1000
         ;
@@ -115,7 +115,7 @@ public class CaffenieConfig {
                 caches.add(new CaffeineCache(c.name(),
                         Caffeine.newBuilder().recordStats()
                                 .initialCapacity(1)
-//                                .expireAfterWrite(c.getTtl(), TimeUnit.SECONDS)
+                                .expireAfterWrite(c.getTtl(), TimeUnit.SECONDS)
                                 .refreshAfterWrite(c.getTtl(),TimeUnit.SECONDS)
                                 .maximumSize(1)
                                 .build(cacheLoader())

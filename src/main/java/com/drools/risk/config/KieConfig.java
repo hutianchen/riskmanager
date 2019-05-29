@@ -51,7 +51,7 @@ public class KieConfig {
     }
 
     /**
-     * 这里要引入 org.springframework.core.io.Resource  包
+     * 这里要引入 org.springframework.core.io.Resource 包
      *
      * @return
      * @throws IOException

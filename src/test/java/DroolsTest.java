@@ -63,17 +63,20 @@ public class DroolsTest {
     public void testCaffenieKieBase() throws InterruptedException {
 
 
-        KieBase kieBase3 = cacheManager.getCache("kieBase").get("queryKieBase",KieBase.class);
+//        KieBase kieBase3 = cacheManager.getCache("kieBase").get("queryKieBase",KieBase.class);
         //cacheManager.get(key, k -> createExpensiveGraph(k)); //如果key不存在，调用createExpensiveGraph方法加载
 
-        if(kieBase3 == null){
-            kieBase3 = new KieHelper().build();
-            cacheManager.getCache("kieBase").put("queryKieBase",kieBase3);
-        }
-        System.out.println("缓存初始化成功;kieBase hashcode="+kieBase3.hashCode());
+//        if(kieBase3 == null){
+//            kieBase3 = new KieHelper().build();
+//            cacheManager.getCache("kieBase").put("queryKieBase",kieBase3);
+//        }
+//        System.out.println("缓存初始化成功;kieBase hashcode="+kieBase3.hashCode());
+        KieBase kieBase1Test = droolsEngine.getKieBase("queryKieBase");
 
 
         Thread.sleep(10000);
+        KieBase kieBase2Test = droolsEngine.getKieBase("queryKieBase");
+
         Thread tr1 = new Thread(()->{
             for (int i=0;i<50;i++) {
                 KieBase kieBase1 = droolsEngine.getKieBase("queryKieBase");
@@ -100,7 +103,7 @@ public class DroolsTest {
         });
         tr1.start();
         tr2.start();
-        Thread.sleep(10000);
+        Thread.sleep(1000000);
     }
 
     @Test
