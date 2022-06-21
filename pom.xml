@@ -22,7 +22,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <mysql-connector>5.1.46</mysql-connector>
+        <mysql-connector>8.0.28</mysql-connector>
         <drools.version>7.18.0.Final</drools.version>
         <spring.version>5.1.5.RELEASE</spring.version>
         <spring.boot.version>2.0.4.RELEASE</spring.boot.version>
